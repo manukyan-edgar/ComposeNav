@@ -6,13 +6,12 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -22,6 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import com.example.composenav.R
+import com.example.composenav.ui.element.ActionButton
 
 
 @Composable
@@ -30,7 +30,7 @@ fun ProfileScreen(
     onHomeBackClick: () -> Unit = {},
     onLogOutClick: () -> Unit = {}
 ) {
-    var showDialog by remember { mutableStateOf(false) }
+    var showDialog by rememberSaveable { mutableStateOf(false) }
     if (showDialog)
         AlertDialog(
             onDismissRequest = { showDialog = false },
@@ -56,17 +56,11 @@ fun ProfileScreen(
         horizontalAlignment = Alignment.CenterHorizontally
 
     ) {
-        Button(
-            modifier = Modifier.padding(16.dp),
-            onClick = { nestedNavController.navigate(ProfileScreen.ProfileDetails.route) }
-        ) {
-            Text(stringResource(id = R.string.navigate_to_details))
+        ActionButton(stringResource(id = R.string.navigate_to_details)) {
+            nestedNavController.navigate(ProfileScreen.ProfileDetails.route)
         }
-        Button(
-            modifier = Modifier.padding(16.dp),
-            onClick = { onHomeBackClick() },
-        ) {
-            Text(stringResource(id = R.string.navigate_to_home))
+        ActionButton(stringResource(id = R.string.navigate_to_home)) {
+            onHomeBackClick()
         }
         Text(
             modifier = Modifier

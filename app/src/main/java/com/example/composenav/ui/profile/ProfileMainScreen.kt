@@ -29,11 +29,7 @@ fun ProfileMainScreen(navController: NavHostController) {
         composable(ProfileScreen.Profile.route) {
             ProfileScreen(nestedNavController,
                 onHomeBackClick = {
-                    navController.navigate(Screen.HomeScreen.route) {
-                        popUpTo("root") {
-                            inclusive = true
-                        }
-                    }
+                    navController.popBackStack()
                 },
                 onLogOutClick = {
                     activity?.finish()
