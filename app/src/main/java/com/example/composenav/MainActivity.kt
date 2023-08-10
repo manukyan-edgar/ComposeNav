@@ -66,12 +66,4 @@ class MainActivity : ComponentActivity() {
 
         }
     }
-
-    fun test (){
-
-    }
-
-    fun hello (){
-
-    }
 }
