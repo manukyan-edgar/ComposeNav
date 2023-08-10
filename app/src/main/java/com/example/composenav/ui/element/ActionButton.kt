@@ -9,7 +9,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun ActionButton(buttonText: String, onButtonClick: () -> Unit) {
+fun ActionButton(buttonText: String, onButtonClick: () -> Unit = {}) {
     Button(
         modifier = Modifier.padding(16.dp),
         onClick = { onButtonClick() }
@@ -21,5 +21,5 @@ fun ActionButton(buttonText: String, onButtonClick: () -> Unit) {
 @Preview(showBackground = true)
 @Composable
 fun ActionButtonPreview() {
-    ActionButton(buttonText = "Hello", onButtonClick = {})
+    ActionButton(buttonText = "Hello")
 }
